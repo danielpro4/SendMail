@@ -14,32 +14,35 @@
                             </div>
                         @endif
 
-
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Contacto</th>
-                                <th>Programado</th>
-                                <th>Status</th>
-                            </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Contacto</th>
+                                    <th>Programado</th>
+                                    <th>Status</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @forelse($schedules as $i => $schedule)
-                                <tr>
-                                    <td>{{$schedule->id}}</td>
-                                    <td>{{$schedule->message->email}}</td>
-                                    <td>{{$schedule->scheduled_at}}</td>
-                                    <td>{{$schedule->status}}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="3">
-                                        <img class="uk-svg" width="50" height="50" src="/imgs/funnel.svg">
-                                        <p>Data not found.</p>
-                                    </td>
-                                </tr>
-                            @endforelse
+                                @forelse($schedules as $i => $schedule)
+                                    <tr>
+                                        <td>{{$schedule->id}}</td>
+                                        <td>{{$schedule->message->email}}</td>
+                                        <td>{{$schedule->scheduled_at->toDayDateTimeString()}}</td>
+                                        <td>{!!
+                                            $schedule->status == 'SENDED'
+                                                ? '<span class="text-success">Enviado</span>'
+                                                : '<span class="text-warning">Pendiente</span>'
+                                            !!}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-center" colspan="3">
+                                            <img class="uk-svg" width="50" height="50" src="/imgs/funnel.svg">
+                                            <p>Data not found.</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
 

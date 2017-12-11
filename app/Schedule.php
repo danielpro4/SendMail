@@ -23,7 +23,6 @@ class Schedule extends Model
      */
     const SENDED = 'SENDED';
 
-
     /**
      * The table associated with the model
      *
@@ -43,6 +42,13 @@ class Schedule extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['scheduled_at'];
 
     /**
      * Retrieve the message record that belongs to schedule
