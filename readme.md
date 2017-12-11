@@ -10,26 +10,44 @@
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 ## Email Send App 
 
 Comando de php artisan para ejecutar las migraciones
 ```php
-1. $ php artisan migrate:fresh
+$ php artisan migrate:fresh
 ```
-Comando para llenar la base de datos
+Comando para cargar la base de datos de pruebas
 ```php
-2. $ php artisan db:seed
+$ php artisan db:seed
+```
+Comando para crear la app de authenticación y levantar el servidor
+```php
+$ php artisan make:auth
+$ php artisan serve
 ```
 
 Comando para programar los mensajes
 ```php
-3. $ php artisan message:schedule
+$ php artisan message:schedule
 ```
 
 Comando para enviar los mensajes programados que cumplan las restricciones de fecha y estado
 ```php
-4. $ php artisan email:send
+$ php artisan email:send
+```
+
+Usuario y contraseña de prueba
+```php
+$user = 'daniel.perez.atanacio@gmail.com'
+$pass = 'secret'
 ```
 
 

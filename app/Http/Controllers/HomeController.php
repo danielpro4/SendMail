@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Schedule;
 use Illuminate\Http\Request;
 
 /**
@@ -27,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Gets all messages scheduled
+        $schedules = Schedule::with('message')->paginate(50);
+
+        return view('home')->with('schedules', $schedules);
     }
 }
