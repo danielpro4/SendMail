@@ -24,5 +24,5 @@ class Message extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'email', 'lang', 'phone', '', 'text', 'user_id'];
+    protected $fillable = ['name', 'body'];
 }

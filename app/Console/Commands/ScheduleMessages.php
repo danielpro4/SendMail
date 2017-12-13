@@ -28,23 +28,23 @@ class ScheduleMessages extends Command
      *
      * @var string
      */
-    protected $description = 'Agendar mensajes';
+    protected $description = 'Programar mensajes';
 
     /**
-     * Día inicial para programar
+     * Día inicial para programar los envíos
      * @var int
      */
-    protected $initDay = 11;
+    protected $initDay = 13;
 
     /**
-     * Tamaño mínimo de mensajes por día
+     * Número mínimo de mensajes por día
      *
      * @var int
      */
-    protected $minLength = 10;
+    protected $minLength = 20;
 
     /**
-     * Tamaño máximo de mensajes por día
+     * Número máximo de mensajes por día
      *
      * @var int
      */
@@ -104,7 +104,7 @@ class ScheduleMessages extends Command
             // Init current date
             $initDay = $this->initDay + $i;
 
-            $currentDate = Carbon::create(2017, 12, $initDay, rand(5, 9), rand(0, 59), 0);
+            $currentDate = Carbon::create(2017, 12, $initDay, rand(3, 9), rand(0, 59), 0);
 
             $items = $collection->map(function ($message) use ($currentDate) {
                 // Create a new item
@@ -115,7 +115,7 @@ class ScheduleMessages extends Command
                 $max = rand(61, 120);
 
                 // Calc next
-                $currentDate = $currentDate->addMinutes(rand($min, $max));
+                $currentDate->addMinutes(rand($min, $max));
 
                 return $item;
             })->toArray();

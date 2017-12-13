@@ -7,18 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
 ## Email Send App 
+
+Clonar e instalar proyecto
+
+```php
+$ git clone https://github.com/danielpro4/SendMail.git SenderApp
+$ composer install
+```
 
 Comando de php artisan para ejecutar las migraciones
 ```php
@@ -28,9 +24,13 @@ Comando para cargar la base de datos de pruebas
 ```php
 $ php artisan db:seed
 ```
-Comando para crear la app de authenticación y levantar el servidor
+
+Comando para cargar la base de datos real
 ```php
-$ php artisan make:auth
+$ php artisan message:seed
+```
+Comando para levantar la app
+```php
 $ php artisan serve
 ```
 
@@ -44,20 +44,21 @@ Comando para enviar los mensajes programados que cumplan las restricciones de fe
 $ php artisan email:send
 ```
 
-Usuario y contraseña de prueba
+Usuario y contraseña para admin - Vista de mensajes
 ```php
 $user = 'daniel.perez.atanacio@gmail.com'
-$pass = 'secret'
+$pass = 's3cr3t'
 ```
 
+Consultar resumen de mensajes programados
+```mysql
 
-## Contributing
+SELECT DATE(scheduled_at) AS scheduled_at, count(*) AS count
+ FROM schedules
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+GROUP BY DATE(scheduled_at)
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 

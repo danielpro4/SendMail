@@ -40,15 +40,13 @@ class MessageSended extends Mailable
      */
     public function build()
     {
+        $bodyParse = json_decode($this->message->body, true);
+
+        $name = $bodyParse['Nombre'];
+        $email = $bodyParse['Email'];
+
         return $this->view('emails.message.sended')
-            ->from($this->message->email, $this->message->name)
-            ->with('data', [
-                'Nombre'    => $this->message->name,
-                'Email'     => $this->message->email,
-                'Teléfono'  => $this->message->phone,
-                'Idioma'    => $this->message->lang,
-                'Sucursal'  => $this->message->branch,
-                'Mensaje'   => $this->message->text
-            ]);
+            ->from($email, $name)
+            ->with('data', $bodyParse);
     }
 }

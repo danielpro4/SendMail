@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Previewing Mailables In The Browser
 Route::get('/mailable', function () {
-    $message = Message::findOrFail(1);
+    $message = Message::findOrFail(432);
+
     return new MessageSended($message);
 });

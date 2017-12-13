@@ -37,7 +37,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center" colspan="3">
+                                        <td class="text-center" colspan="4">
                                             <img class="uk-svg" width="50" height="50" src="/imgs/funnel.svg">
                                             <p>Data not found.</p>
                                         </td>
