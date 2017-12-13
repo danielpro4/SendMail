@@ -25,4 +25,21 @@ class Message extends Model
      * @var string[]
      */
     protected $fillable = ['name', 'body'];
+
+
+    /**
+     * Gets Name Attribute
+     *
+     * @return number
+     */
+    public function getFullNameAttribute()
+    {
+        $bodyParse = json_decode($this->body, true);
+
+        $name = $bodyParse['Nombre'];
+        $email = $bodyParse['Email'];
+
+        return $name . ' <' . $email . '>';
+    }
+
 }

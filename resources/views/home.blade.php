@@ -27,7 +27,7 @@
                                 @forelse($schedules as $i => $schedule)
                                     <tr>
                                         <td>{{$schedule->id}}</td>
-                                        <td>{{$schedule->message->email}}</td>
+                                        <td>{{$schedule->message->fullName}}</td>
                                         <td>{{$schedule->scheduled_at->toDayDateTimeString()}}</td>
                                         <td>{!!
                                             $schedule->status == 'SENDED'
