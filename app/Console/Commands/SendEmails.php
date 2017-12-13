@@ -56,48 +56,27 @@ class SendEmails extends Command
      */
     public function handle()
     {
-        // Starting
-        $this->info('Buscando mensajes programados...');
-        $schedules = Schedule::where(function ($q) {
+        $schedules = Schedule::where(function($q) {
             $q->where('status', '=', Schedule::PENDING);
             $q->where('scheduled_at', '<=', Carbon::now());
         })->get();
 
         //region Process
 
-        // Extract the contact id from console args
-        // $id = $this->argument('message');
-
-        // Send the message to
+		// Find the User
         $user = User::findOrFail(1);
 
-        $bar = $this->output->createProgressBar($schedules->count());
-
         foreach ($schedules as $schedule) {
+        	if ($schedule) {
+				$schedule->status = Schedule::SENDED;
+				$schedule->sended_at = Carbon::now();
+				$schedule->save();
 
-            $schedule->status = Schedule::SENDED;
-            $schedule->sended_at = Carbon::now();
-            $schedule->save();
+				$mailable = new MessageSended($schedule->message);
 
-            $validator = Validator::make(['email' =>  $schedule->message->email], [
-                'email' => 'required|email'
-            ]);
-
-            if ($validator->passes()) {
-                // Create a new mailable instance
-                $mailable = new MessageSended( $schedule->message);
-
-                Mail::to($user)->send($mailable);
-            }
-
-            $bar->advance();
+				Mail::to($user)->send($mailable);
+			}
         }
-
-        $bar->finish();
-
         //endregion
-
-        $this->info('');
-        $this->info('Mensajes enviados!');
     }
 }
