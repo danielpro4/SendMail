@@ -34,7 +34,7 @@ class Message extends Model
      */
     public function getFullNameAttribute()
     {
-        $bodyParse = json_decode($this->body, true);
+        $bodyParse= json_decode($this->body, true);
 
         $name = $bodyParse['Nombre'];
         $email = $bodyParse['Email'];
