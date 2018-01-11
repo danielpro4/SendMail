@@ -42,8 +42,8 @@ class MessageSended extends Mailable
     {
         $bodyParse = json_decode($this->message->body, true);
 
-        $name = $bodyParse['Nombre'];
-        $email = $bodyParse['Email'];
+        $name = "Idiomas VW"; //$bodyParse['Nombre'];
+        $email = "contacto@idiomasvw.com.mx"; //$bodyParse['Email'];
 
         return $this->view('emails.message.page')
 			->subject('Mensaje de idiomasvw.com.mx')

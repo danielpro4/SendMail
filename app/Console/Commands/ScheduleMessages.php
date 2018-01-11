@@ -34,7 +34,7 @@ class ScheduleMessages extends Command
      * Día inicial para programar los envíos
      * @var int
      */
-    protected $initDay = 13;
+    protected $initDay = 11;
 
     /**
      * Número mínimo de mensajes por día
@@ -78,7 +78,7 @@ class ScheduleMessages extends Command
 
         $bar = $this->output->createProgressBar($size);
 
-        // Splitted the messages
+        // Splited the messages
         $collections = [];
 
         for (; $count < $size; ) {
@@ -104,7 +104,7 @@ class ScheduleMessages extends Command
             // Init current date
             $initDay = $this->initDay + $i;
 
-            $currentDate = Carbon::create(2017, 12, $initDay, rand(3, 9), rand(0, 59), 0);
+            $currentDate = Carbon::create(2018, 1, $initDay, rand(3, 9), rand(0, 59), 0);
 
             $items = $collection->map(function ($message) use ($currentDate) {
                 // Create a new item

@@ -58,16 +58,22 @@ class SendEmail extends Command
     {
         //region Process
 		$schedule = Schedule::findOrFail(1);
-        $user = User::findOrFail(1);
+
+        $to = User::findOrFail(1);
+        $bcc1 = User::findOrFail(2);
+        $bcc2 = User::findOrFail(3);
 
 		if ($schedule) {
 			$schedule->status = Schedule::SENDED;
 			$schedule->sended_at = Carbon::now();
 			$schedule->save();
 
-			$mailable = new MessageSended($schedule->message);
+			$messageSended = new MessageSended($schedule->message);
 
-			Mail::to($user)->send($mailable);
+			Mail::to($to)
+				->bcc($bcc1)
+				->bcc($bcc2)
+				->send($messageSended);
 		}
 
         //endregion

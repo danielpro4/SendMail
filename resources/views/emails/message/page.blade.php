@@ -18,7 +18,9 @@
                     <tr>
                         <td>
                             @foreach($data as $key => $value)
-                                <div><b>{{$key}}</b>: {{$value}}</div>
+                                @if($key !== 'Terminos' && $key !== 'Privacidad')
+                                    <div><b>{{$key}}</b>: {{$value}}</div>
+                                @endif
                             @endforeach
                         </td>
                     </tr>
