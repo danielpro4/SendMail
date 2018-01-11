@@ -45,7 +45,8 @@ class MessageSended extends Mailable
         $name = $bodyParse['Nombre'];
         $email = $bodyParse['Email'];
 
-        return $this->view('emails.message.sended')
+        return $this->view('emails.message.page')
+			->subject('Mensaje de idiomasvw.com.mx')
             ->from($email, $name)
             ->with('data', $bodyParse);
     }
